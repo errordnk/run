@@ -1,0 +1,24 @@
+version: '3'
+
+tasks:
+  default:
+    desc: Pull and build run
+    cmds:
+      - git pull
+      - task: build
+
+  build:
+    desc: Build run binary
+    sources:
+      - ./*.go
+      - go.mod
+      - go.sum
+    generates:
+      - /home/dnk/bin/run
+    cmds:
+      - go build -o ~/bin/run .
+
+  clean:
+    desc: Remove run binary
+    cmds:
+      - rm -f ~/bin/run
